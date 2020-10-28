@@ -23,15 +23,18 @@ class LoginField extends StatelessWidget{
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(
-                  top: 10
-                ),
-                child: Text(
-                    "¿No tienes una cuenta?",
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
 
+                child: FlatButton(
+                  onPressed: () {
+                    //Navigator.pushNamed(context, "/registry");
+                    Navigator.pushNamed(context, "/registry");
+                  },
+                  child: Text(
+                      "¿No tienes una cuenta?",
+                    style: TextStyle(
+                      color: Colors.grey
+                    ),
+                  ),
                 ),
               )
             ],
@@ -49,6 +52,10 @@ class LoginField extends StatelessWidget{
               top:40
           ),
           child: RaisedButton(
+            onPressed: () {
+              //Navigator.pushNamed(context, "/registry");
+              Navigator.pushNamed(context, "/service-enroll");
+            },
             child: Container(
               child: Text(
                 "INGRESAR",
@@ -56,13 +63,13 @@ class LoginField extends StatelessWidget{
                   fontSize: 20,
                   color: Colors.white
                 ),
+
               ),
             ),
             color: Colors.cyan,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
             ),
-            onPressed: () {},
           ),
         ),
         Container(
