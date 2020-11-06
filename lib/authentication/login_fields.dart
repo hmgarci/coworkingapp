@@ -54,7 +54,7 @@ class LoginField extends StatelessWidget{
           child: RaisedButton(
             onPressed: () {
               //Navigator.pushNamed(context, "/registry");
-              Navigator.pushNamed(context, "/service-enroll");
+              Navigator.pushNamed(context, "/dashboard");
             },
             child: Container(
               child: Text(

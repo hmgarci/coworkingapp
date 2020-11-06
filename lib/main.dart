@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:coworking_app/authentication/Login.dart';
 import 'package:coworking_app/registry/registry_app.dart';
 import 'service_enroll/service_enroll.dart';
+import 'package:coworking_app/dashboard/dashboard_app.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         "/main":(BuildContext context)=>MyApp(),
         "/registry":(BuildContext context)=>RegistryApp(),
-        "/service-enroll":(BuildContext context)=>ServiceEnroll()
+        "/service-enroll":(BuildContext context)=>ServiceEnroll(),
+        "/dashboard":(BuildContext context)=>DashboardApp()
       },
     home: Scaffold(
       appBar: AppBar(
