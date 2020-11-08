@@ -127,7 +127,9 @@ class ServiceEnrollFields extends StatelessWidget{
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/dashboard");
+            },
           ),
         )
       ],

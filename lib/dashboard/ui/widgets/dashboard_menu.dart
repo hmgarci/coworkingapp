@@ -17,19 +17,19 @@ class DashboardMenu extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           title: Text('Inicio'),
-          icon: Icon(Icons.favorite),
+          icon: Icon(Icons.account_balance),
         ),
         BottomNavigationBarItem(
           title: Text('Mis grupos'),
-          icon: Icon(Icons.music_note),
+          icon: Icon(Icons.people),
         ),
         BottomNavigationBarItem(
           title: Text('Agregar'),
-          icon: Icon(Icons.location_on),
+          icon: Icon(Icons.add_to_photos),
         ),
         BottomNavigationBarItem(
           title: Text('chat'),
-          icon: Icon(Icons.library_books),
+          icon: Icon(Icons.chat_bubble),
         ),
       ],
     );

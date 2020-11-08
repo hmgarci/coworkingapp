@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:hexcolor/hexcolor.dart';
 
 class LoginField extends StatelessWidget{
   @override
@@ -54,7 +53,7 @@ class LoginField extends StatelessWidget{
           child: RaisedButton(
             onPressed: () {
               //Navigator.pushNamed(context, "/registry");
-              Navigator.pushNamed(context, "/dashboard");
+              Navigator.pushNamed(context, "/service-enroll");
             },
             child: Container(
               child: Text(
