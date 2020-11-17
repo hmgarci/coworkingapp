@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dashboard_menu.dart';
-import 'card_list.dart';
+import 'package:coworking_app/dashboard/ui/widgets/dashboard_menu.dart';
+import 'package:coworking_app/dashboard/ui/screens/card_list.dart';
 
 class DashboardApp extends StatelessWidget{
 

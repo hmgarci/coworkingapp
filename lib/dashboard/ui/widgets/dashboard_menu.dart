@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:coworking_app/user/bloc/bloc_user.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class DashboardMenu extends StatelessWidget {
 
+  UserBloc userBloc;
+
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
+      userBloc=BlocProvider.of(context);
+      return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.cyan,
       selectedItemColor: Colors.white,
@@ -12,7 +17,9 @@ class DashboardMenu extends StatelessWidget {
       selectedFontSize: 14,
       unselectedFontSize: 14,
       onTap: (value) {
-        // Respond to item press.
+        userBloc.signOut();
+        Navigator.pushNamed(context, "/main");
+
       },
       items: [
         BottomNavigationBarItem(
@@ -20,16 +27,16 @@ class DashboardMenu extends StatelessWidget {
           icon: Icon(Icons.account_balance),
         ),
         BottomNavigationBarItem(
-          title: Text('Mis grupos'),
-          icon: Icon(Icons.people),
+          title: Text('chat'),
+          icon: Icon(Icons.chat_bubble),
         ),
         BottomNavigationBarItem(
           title: Text('Agregar'),
           icon: Icon(Icons.add_to_photos),
         ),
         BottomNavigationBarItem(
-          title: Text('chat'),
-          icon: Icon(Icons.chat_bubble),
+          title: Text('Cerrar'),
+          icon: Icon(Icons.exit_to_app),
         ),
       ],
     );

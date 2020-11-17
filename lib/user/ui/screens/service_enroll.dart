@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'service_enroll_header.dart';
-import 'service_enroll_fields.dart';
+import 'package:coworking_app/user/ui/widgets/service_enroll_fields.dart';
+import 'package:coworking_app/user/ui/screens/service_enroll_header.dart';
 
 class ServiceEnroll extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: Text(
-            "CoworkingApp"
-        ),
-      ),
+
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -21,8 +16,6 @@ class ServiceEnroll extends StatelessWidget{
         ),
 
       ),
-
-
 
     );
   }

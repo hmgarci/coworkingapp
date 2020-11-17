@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dashboard_card.dart';
+import 'package:coworking_app/dashboard/ui/widgets/dashboard_card.dart';
 
 class CardList extends StatelessWidget{
 

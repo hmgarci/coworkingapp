@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:coworking_app/user/bloc/bloc_user.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+class LoginField extends StatefulWidget{
 
-class LoginField extends StatelessWidget{
+  @override
+  State createState() {
+    return _LoginField();
+  }
+}
+
+class _LoginField extends State<LoginField>{
+
+  UserBloc userBloc;
   @override
   Widget build(BuildContext context) {
+    userBloc=BlocProvider.of(context);
+    return fields();
+
+  }
+  Widget fields(){
     final forgotPassword=Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(
-            top: 20,
-            left: 20
+              top: 20,
+              left: 20
           ),
           child: Column(
             children: <Widget>[
               Container(
                 child: Text(
-                    "¿Olvidaste tu contraseña?",
+                  "¿Olvidaste tu contraseña?",
                   style: TextStyle(
-                    color: Colors.grey
+                      color: Colors.grey
                   ),
                 ),
               ),
@@ -29,9 +46,9 @@ class LoginField extends StatelessWidget{
                     Navigator.pushNamed(context, "/registry");
                   },
                   child: Text(
-                      "¿No tienes una cuenta?",
+                    "¿No tienes una cuenta?",
                     style: TextStyle(
-                      color: Colors.grey
+                        color: Colors.grey
                     ),
                   ),
                 ),
@@ -59,8 +76,8 @@ class LoginField extends StatelessWidget{
               child: Text(
                 "INGRESAR",
                 style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white
+                    fontSize: 20,
+                    color: Colors.white
                 ),
 
               ),
@@ -91,7 +108,10 @@ class LoginField extends StatelessWidget{
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
             ),
-            onPressed: () {},
+            onPressed: () {
+              userBloc.signIn().then((FirebaseUser user) =>
+                  print("El usuario es: ${user.displayName}"));
+            },
           ),
         )
       ],
@@ -103,16 +123,16 @@ class LoginField extends StatelessWidget{
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(
-            top: 50
-        ),
+              top: 50
+          ),
           width: 350,
           child: TextField(
             cursorColor: Colors.cyan,
             decoration: InputDecoration(
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(40)
-                )
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(40)
+                  )
               ),
               labelText: 'Usuario',
             ),
@@ -138,6 +158,7 @@ class LoginField extends StatelessWidget{
         )
       ],
     );
+
     return Column(
       children: <Widget>[
         loginFields,
@@ -147,4 +168,4 @@ class LoginField extends StatelessWidget{
     );
   }
 
-}
+  }
