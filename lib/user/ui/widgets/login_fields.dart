@@ -4,6 +4,8 @@ import 'package:coworking_app/user/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 class LoginField extends StatefulWidget{
 
+
+
   @override
   State createState() {
     return _LoginField();
@@ -12,6 +14,8 @@ class LoginField extends StatefulWidget{
 
 class _LoginField extends State<LoginField>{
 
+  final emailController=new TextEditingController();
+  final passwordController=new TextEditingController();
   UserBloc userBloc;
   @override
   Widget build(BuildContext context) {
@@ -70,7 +74,9 @@ class _LoginField extends State<LoginField>{
           child: RaisedButton(
             onPressed: () {
               //Navigator.pushNamed(context, "/registry");
-              Navigator.pushNamed(context, "/service-enroll");
+              //Navigator.pushNamed(context, "/service-enroll");
+              userBloc.signInFirebase(emailController.text, passwordController.text).then((FirebaseUser user) =>
+                  print("El usuario es: ${user.displayName}"));
             },
             child: Container(
               child: Text(
@@ -127,6 +133,7 @@ class _LoginField extends State<LoginField>{
           ),
           width: 350,
           child: TextField(
+            controller: emailController,
             cursorColor: Colors.cyan,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -144,6 +151,7 @@ class _LoginField extends State<LoginField>{
           ),
           width: 350,
           child: TextField(
+            controller: passwordController,
             cursorColor: Colors.cyan,
             obscureText: true,
             decoration: InputDecoration(

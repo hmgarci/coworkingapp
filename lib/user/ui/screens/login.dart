@@ -4,6 +4,7 @@ import 'package:coworking_app/user/ui/widgets/login_fields.dart';
 import 'package:coworking_app/user/bloc/bloc_user.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:coworking_app/user/ui/screens/service_enroll.dart';
+import 'package:coworking_app/user/ui/widgets/alert_dialog.dart';
 
 class Login extends StatefulWidget{
   @override
@@ -13,11 +14,13 @@ class Login extends StatefulWidget{
 }
 
 Widget _loginScreen(){
-  return Column(
-    children: <Widget>[
-      LoginHeader(),
-      LoginField(),
-    ],
+  return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          LoginHeader(),
+          LoginField(),
+        ],
+      )
   );
 }
 
@@ -32,7 +35,8 @@ class _Login extends State<Login>{
 
   }
 
-  Widget _handleCurrentSession(){
+   _handleCurrentSession(){
+    Alert aler=new Alert("¡ERROR!", "Autenticación fallida");
     return StreamBuilder(
       stream: userBloc.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
