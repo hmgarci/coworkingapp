@@ -1,8 +1,29 @@
+import 'package:coworking_app/user/model/service_enroll.dart';
 import 'package:flutter/material.dart';
+import 'package:coworking_app/user/bloc/bloc_user.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
-class ServiceEnrollFields extends StatelessWidget{
+class ServiceEnrollFields extends StatefulWidget {
+  @override
+  State createState() {
+    return _ServiceEnrollFields();
+  }
+}
+
+class _ServiceEnrollFields extends State<ServiceEnrollFields>{
+  final controllerName=TextEditingController();
+  final controllerLastName=TextEditingController();
+  final controllerProfession=TextEditingController();
+  final controllerSkill=TextEditingController();
+  final controllerService=TextEditingController();
+
+  UserBloc userBloc;
   @override
   Widget build(BuildContext context) {
+    userBloc=BlocProvider.of(context);
+    return serviceEnroll(context);
+  }
+  Widget serviceEnroll(BuildContext context) {
     String dropdownValue = '¿Qué servicio nos quieres ofrecer?';
     final serviceList=Container(
       margin: EdgeInsets.only(
@@ -42,6 +63,7 @@ class ServiceEnrollFields extends StatelessWidget{
           ),
           width: 350,
           child: TextField(
+            controller: controllerName,
             cursorColor: Colors.cyan,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -59,6 +81,7 @@ class ServiceEnrollFields extends StatelessWidget{
           ),
           width: 350,
           child: TextField(
+            controller: controllerLastName,
             cursorColor: Colors.cyan,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -76,6 +99,7 @@ class ServiceEnrollFields extends StatelessWidget{
           ),
           width: 350,
           child: TextField(
+            controller: controllerProfession,
             cursorColor: Colors.cyan,
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -93,6 +117,7 @@ class ServiceEnrollFields extends StatelessWidget{
           ),
           width: 350,
           child: TextField(
+            controller: controllerSkill,
             maxLines: 8,
             cursorColor: Colors.cyan,
             decoration: InputDecoration(
@@ -128,13 +153,64 @@ class ServiceEnrollFields extends StatelessWidget{
               borderRadius: BorderRadius.circular(40),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, "/dashboard");
+
+
+             // Navigator.pushNamed(context, "/dashboard");
             },
           ),
         )
       ],
     );
 
+    _validateCreationEnroll() async{
+      ServiceEnroll serviceEnroll=new ServiceEnroll(controllerService.text,
+          controllerName.text, controllerLastName.text, controllerProfession.text, controllerSkill.text);
+      bool op=await userBloc.clientEnroll(serviceEnroll);
+      if (op) {
+        print("¡¡¡¡¡¡¡Cliente enrolado!!!!");
+        return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            // return object of type Dialog
+            return AlertDialog(
+              title: Text("¡BIEN!"),
+              content: Text("Se guardó la información correctamente"),
+              actions: <Widget>[
+                // usually buttons at the bottom of the dialog
+                new FlatButton(
+                  child: new Text("Cerrar"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        print("NO se creo el usuario correctamente ");
+        return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              // return object of type Dialog
+              return AlertDialog(
+                title: Text("¡ERROR!"),
+                content: Text("NO guardó la información correctamente"),
+                actions: <Widget>[
+                  // usually buttons at the bottom of the dialog
+                  new FlatButton(
+                    child: new Text("Cerrar"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            }
+        );
+      }
+
+    }
 
     return Column(
       children: <Widget>[
@@ -146,5 +222,9 @@ class ServiceEnrollFields extends StatelessWidget{
 
 
   }
-
 }
+
+
+
+
+

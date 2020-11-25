@@ -75,8 +75,8 @@ class _LoginField extends State<LoginField>{
             onPressed: () {
               //Navigator.pushNamed(context, "/registry");
               //Navigator.pushNamed(context, "/service-enroll");
-              userBloc.signInFirebase(emailController.text, passwordController.text).then((FirebaseUser user) =>
-                  print("El usuario es: ${user.displayName}"));
+              userBloc.signInFirebase(emailController.text, passwordController.text).then((UserCredential user) =>
+                  print("El usuario es: ${user.additionalUserInfo.username}"));
             },
             child: Container(
               child: Text(
@@ -115,8 +115,8 @@ class _LoginField extends State<LoginField>{
               borderRadius: BorderRadius.circular(40),
             ),
             onPressed: () {
-              userBloc.signIn().then((FirebaseUser user) =>
-                  print("El usuario es: ${user.displayName}"));
+              userBloc.signIn().then((UserCredential user) =>
+                  print("El usuario es: ${user.additionalUserInfo.username}"));
             },
           ),
         )

@@ -6,17 +6,17 @@ class FirebaseAuthAPI{
   final FirebaseAuth firebaseAuth=FirebaseAuth.instance;
   final GoogleSignIn googleSignIn=GoogleSignIn();
 
-  Future<FirebaseUser> signIn() async{
+  Future<UserCredential> signIn() async{
     GoogleSignInAccount googleSignInAccount= await googleSignIn.signIn();
     GoogleSignInAuthentication authentication=await googleSignInAccount.authentication;
     
-    FirebaseUser user=await firebaseAuth.signInWithCredential(
-      GoogleAuthProvider.getCredential(idToken: authentication.idToken, accessToken: authentication.accessToken)
+    UserCredential user=await firebaseAuth.signInWithCredential(
+      GoogleAuthProvider.credential(idToken: authentication.idToken, accessToken: authentication.accessToken)
     );
     return user;
   }
-   Future<FirebaseUser> signInFirebase(String email, String password) async{
-    FirebaseUser user= await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+   Future<UserCredential> signInFirebase(String email, String password) async{
+     UserCredential user= await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
     return user;
    }
 
@@ -28,7 +28,7 @@ class FirebaseAuthAPI{
 
   Future<bool> registerUser(String email, String password,) async{
     try{
-      FirebaseUser user=await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential user=await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return true;
     } catch (e) {
       if (e.code == 'weak-password') {
